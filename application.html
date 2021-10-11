@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<link rel="stylesheet" href="assets/pagestyle.css">
+		<link rel="stylesheet" href="assets/widgetstyle.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" />
+		<script src="credentials.js"></script> 
+		<script src="assets/widgetscript.js"></script> 
+	</head>
+	<body>
+		<div style="margin: 30px;">
+			<div style="padding-left: 8px; padding-right: 8px;" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12">
+			  <div class="ant-row ant-form-item ant-form-item-has-success" style="row-gap: 0px;">
+				 <div class="ant-col ant-form-item-label"><label for="advanced_search_cost" class="">Name</label></div>
+				 <div class="ant-col ant-form-item-control">
+					<div class="ant-form-item-control-input">
+					   <div class="ant-form-item-control-input-content"><input placeholder="" type="text" id="widget_name_field" class="ant-input" value="Lenna"></div>
+					</div>
+				 </div>
+			  </div>
+			</div>
+			<div style="padding-left: 8px; padding-right: 8px;" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12">
+			  <div class="ant-row ant-form-item ant-form-item-has-success" style="row-gap: 0px;">
+				 <div class="ant-col ant-form-item-label"><label for="advanced_search_price" class="">Theme</label></div>
+				 <div class="ant-radio-group ant-radio-group-outline">
+					<label id="widget_theme_min" onclick="radio_event_select(widget_theme_label_ids, 0);" class="ant-radio-button-wrapper ant-radio-button-wrapper-checked">Minimal</label> 
+
+					<label id="widget_theme_lig" onclick="radio_event_select(widget_theme_label_ids, 1);" class="ant-radio-button-wrapper">Light</label>
+
+					<label id="widget_theme_cla" onclick="radio_event_select(widget_theme_label_ids, 2);" class="ant-radio-button-wrapper">Classic</label>
+				 </div>
+			  </div>
+			</div>
+			<div style="padding-left: 8px; padding-right: 8px;" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12">
+			  <div class="ant-row ant-form-item ant-form-item-has-success" style="row-gap: 0px;">
+				 <div class="ant-col ant-form-item-label"><label for="advanced_search_comparePrice" class="">Layout</label></div>
+
+				 <div class="ant-radio-group ant-radio-group-outline">
+					<label id="widget_layout_win" onclick="radio_event_select(widget_layout_label_ids, 0);" class="ant-radio-button-wrapper ant-radio-button-wrapper-checked">Window</label> 
+
+					<label id="widget_layout_sid" onclick="radio_event_select(widget_layout_label_ids, 1);" class="ant-radio-button-wrapper">Side</label>
+
+					<label id="widget_layout_ful" onclick="radio_event_select(widget_layout_label_ids, 2);" class="ant-radio-button-wrapper">Full</label>
+				 </div>
+			  </div>
+		   </div>
+		</div>
+		<div id="widget" data-align="right">
+			<div id="opened" style="display:none;">
+				<div id="chat" class="chat" theme="0" layout="0">
+					<div class="top">
+						<div data-size="normal" class="close" onclick="hide_element('opened'); show_element('closed');">
+							<svg viewBox="0 0 24 24">
+								<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#5e6165"></path>
+							</svg>
+						</div>
+						<div class="icon">
+							<div class="icon-status" style="border-color: rgb(255, 255, 255); background: rgb(105, 222, 64) none repeat scroll 0% 0%;"></div>
+							<div class="icon-image">
+								<div data-status="loaded" data-cover="true" class="lazy-img">
+									<img src="assets/icon.png" alt="" class="lazy-img-loaded">
+								</div>
+							</div>
+						</div>
+						<div class="title">
+							<div class="header" style="color: rgb(0, 0, 0);" id="widget_name">Lenna</div>
+							<div class="status" style="color: rgb(155, 166, 179);">Online</div>
+						</div>
+					</div>
+
+					<div id="conversation-container" class="conversation"></div>
+
+					<div class="typing">
+						<input id="user-input" type="text" maxlength="96" placeholder="Type your message here" onkeyup="if (event.keyCode === 13) event_input();"> 
+						<div class="send-icon" onclick="event_input();">
+							<svg viewBox="0 0 24 24">
+								<path id="send-icon-path" fill="#006cff" d="M22,11.7V12h-0.1c-0.1,1-17.7,9.5-18.8,9.1c-1.1-0.4,2.4-6.7,3-7.5C6.8,12.9,17.1,12,17.1,12H17c0,0,0-0.2,0-0.2c0,0,0,0,0,0c0-0.4-10.2-1-10.8-1.7c-0.6-0.7-4-7.1-3-7.5C4.3,2.1,22,10.5,22,11.7z"></path>
+							</svg>
+						</div>
+					</div>
+
+					<div class="info"><span><span style="color: rgb(155, 166, 178);">Powered by</span> <a target="_blank" href="https://maestrostudio.org" style="color: rgb(18, 91, 251);">Lenna</a></span></div>
+				</div>
+			</div>
+
+			<div id="closed" style="display: flex; flex-direction: row;">
+				<div class="bubble-label" type="button">Chat</div>
+				<div class="bubble" onclick="init_conversation(); hide_element('closed'); show_element('opened');">
+					<svg height="100%" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+						<path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path>
+						<path d="M0 0h24v24H0z" fill="none"></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	const widget_name = document.getElementById('widget_name');
+	const widget_name_field = document.getElementById('widget_name_field');
+	
+	widget_name_field.addEventListener('input', function(e) {
+		widget_name.innerHTML = widget_name_field.value;
+	});
+	
+	const widget_theme_label_ids = [
+      "widget_theme_min",
+      "widget_theme_lig",
+      "widget_theme_cla"
+      ];
+	const widget_layout_label_ids = [
+      "widget_layout_win",
+      "widget_layout_sid",
+      "widget_layout_ful"
+      ];
+	
+	function radio_event_select(group, index) {
+		group.forEach(function (id) {
+			document.getElementById(id).classList.remove("ant-radio-button-wrapper-checked");
+		})
+		document.getElementById(group[index]).classList.add("ant-radio-button-wrapper-checked");
+		
+		if (group == widget_theme_label_ids) {
+			document.getElementById("chat").setAttribute("theme", index);
+		}
+		else if (group == widget_layout_label_ids) {
+			document.getElementById("chat").setAttribute("layout", index);
+		}
+	}
+</script>
+
