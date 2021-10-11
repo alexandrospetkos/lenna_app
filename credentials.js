@@ -1,1 +1,1 @@
-private_key = "ypoSgpFuk8DYrM2Yc92EvwBb7RVkZt5C";
+private_key = "YOUR_PRIVATE_API_KEY";
